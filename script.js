@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const birthYear = localStorage.getItem("birthYear");
+  const birthMonth = localStorage.getItem("birthMonth");
+  const birthDay = localStorage.getItem("birthDay");
+
+  if (birthYear && birthMonth && birthDay) {
+    const birthDate = new Date(birthYear, birthMonth, birthDay);
+    updatePassedTime(birthDate);
+  }
+});
+
 function validate() {
   const form = document.getElementById("birthdate-form");
   if (form.checkValidity()) {
@@ -15,9 +26,16 @@ function calculateTimePassed() {
   const hour = parseInt(document.getElementById("hour").value) || 0;
   const minute = parseInt(document.getElementById("minute").value) || 0;
   const second = parseInt(document.getElementById("second").value) || 0;
+
+  localStorage.setItem("birthYear", year);
+  localStorage.setItem("birthMonth", month);
+  localStorage.setItem("birthDay", day);
+
   const birthdate = new Date(year, month, day, hour, minute, second);
   updatePassedTime(birthdate);
 }
+let input = document.getElementById("birthdate-form");
+let result = document.getElementById("result");
 
 function updatePassedTime(birthdate) {
   function calculateAndDisplay() {
@@ -69,14 +87,34 @@ function updatePassedTime(birthdate) {
         ? `00${milliseconds}`.slice(-3)
         : `${milliseconds}`.slice(-3);
 
-    let result = document.getElementById("result");
     result.innerText = `${years} years, ${months} months, ${formattedDays} days, ${formattedHours}:${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
     result.style.display = "flex";
 
-    let input = document.getElementById("birthdate-form");
     input.style.display = "none";
     // resultSection.style.display = "block";
   }
   setInterval(calculateAndDisplay, 1);
   // calculateAndDisplay();
+}
+
+document.getElementById("reset-button").addEventListener("click", resetTime);
+
+function resetTime() {
+  // Clear local storage
+  localStorage.removeItem("birthYear");
+  localStorage.removeItem("birthMonth");
+  localStorage.removeItem("birthDay");
+
+  // Clear the input fields
+  document.getElementById("year").value = "";
+  document.getElementById("month").value = "";
+  document.getElementById("day").value = "";
+  document.getElementById("hour").value = "";
+  document.getElementById("minute").value = "";
+  document.getElementById("second").value = "";
+
+  // Hide the result section and show the input section
+  result.style.display = "none";
+  input.style.display = "block";
+  location.reload();
 }
