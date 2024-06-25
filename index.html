@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leetcode problems</title>
+    <link rel="stylesheet" href="./design.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Calculate Time Passed Since Your Birth</h1>
+      <form id="birthdate-form">
+        <label for="year">Year: <span>*</span></label>
+        <input
+          type="number"
+          id="year"
+          name="year"
+          required
+          placeholder="Enter your year of birth"
+        /><br /><br />
+
+        <label for="month">Month: <span>*</span></label>
+        <input
+          type="number"
+          id="month"
+          name="month"
+          required
+          placeholder="Enter your month of birth"
+        /><br /><br />
+
+        <label for="day">Day: <span>*</span></label>
+        <input
+          type="number"
+          id="day"
+          name="day"
+          required
+          placeholder="Enter your day of birth"
+        /><br /><br />
+
+        <label for="hour">Hour:</label>
+        <input
+          type="number"
+          id="hour"
+          name="hour"
+          placeholder="Enter your hour of birth"
+        /><br /><br />
+
+        <label for="minute">Minute:</label>
+        <input
+          type="number"
+          id="minute"
+          name="minute"
+          placeholder="Enter your minute of birth"
+        /><br /><br />
+
+        <label for="second">Second:</label>
+        <input
+          type="number"
+          id="second"
+          name="second"
+          placeholder="Enter your second of birth"
+        /><br /><br />
+        <h4 id="filling-required">* Fill out the required fields</h4>
+
+        <button type="button" onclick="validate()">Calculate</button>
+      </form>
+      <h2 id="result"></h2>
+    </div>
+    <!-- <input type="text" /> -->
+    <div class="card"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
